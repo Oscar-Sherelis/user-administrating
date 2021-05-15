@@ -1,0 +1,20 @@
+{
+  "name": "user-administration",
+  "version": "1.0.0",
+  "description": "Editing users info",
+  "main": "index.js",
+  "scripts": {
+    "json:server": "json-server --watch db.json",
+    "start": "parcel index.html"
+  },
+  "keywords": [
+    "User",
+    "data",
+    "administrating",
+    "edits",
+    "save",
+    "cancel"
+  ],
+  "author": "Oscar Sherelis",
+  "license": "ISC"
+}

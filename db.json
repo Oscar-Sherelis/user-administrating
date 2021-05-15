@@ -1,0 +1,10 @@
+{
+    "users": [
+        {
+            "name": "Oscar",
+            "surname": "Sherelis",
+            "gender": "male",
+            "date-of-birth": "1996-07-28"
+        }
+    ]
+}
