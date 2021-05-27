@@ -68,6 +68,7 @@ async function load() {
   addfieldEvents(tbodyTdClasses);
   await cancel();
   save();
+  deleteEvent();
 }
 
 function addfieldEvents(classes) {
@@ -195,6 +196,59 @@ function save() {
         : selectedRow.querySelector(".birthday").innerHTML;
       saveReq(btn.value, patch);
       alert("Save completed Successfully");
+    });
+  });
+}
+
+function deleteEvent() {
+  // deletes selected fields
+  async function deletePatch(id, patch) {
+    let res = await fetch("http://localhost:3000/users/" + id, {
+      method: "PATCH",
+      mode: "cors",
+      body: JSON.stringify(patch),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return await res.json();
+  }
+  // If all fields are selected, then delete from DB
+  async function deleteReq(id) {
+    let res = await fetch("http://localhost:3000/users/" + id, {
+      method: "DELETE",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return await res.json();
+  }
+
+  document.querySelectorAll(".delete").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      let patch = {};
+      let selectedRow = btn.parentNode.parentNode;
+      let onDelete = ".onEdit";
+      let selectedFieldCounter = 0;
+      tbodyTdClasses.forEach((singleClass) => {
+        let removedDots = singleClass.replace(/\./g, " ");
+        !!selectedRow.querySelector(singleClass + onDelete)
+          ? ((patch[removedDots.trim()] = ""), selectedFieldCounter++)
+          : null;
+      });
+
+      const agree = prompt("Are you sure you want to Delete?", "yes");
+      !!agree 
+      ?
+        selectedFieldCounter === 4
+        ? (deleteReq(btn.value),
+          alert("Deleted successfully"))
+        : selectedFieldCounter < 4
+        ? (deletePatch(btn.value, patch),
+          alert("Deleted successfully"))
+        :null
+      :null
     });
   });
 }
