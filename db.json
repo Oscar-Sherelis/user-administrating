@@ -1,10 +1,18 @@
 {
-    "users": [
-        {
-            "name": "Oscar",
-            "surname": "Sherelis",
-            "gender": "male",
-            "date-of-birth": "1996-07-28"
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "firstname": "Oscar",
+      "lastname": "Sherelis",
+      "gender": "male",
+      "birthday": "1996-05-13"
+    },
+    {
+      "id": 2,
+      "firstname": "Harry",
+      "lastname": "Stockholm",
+      "gender": "male",
+      "birthday": "1999-07-28"
+    }
+  ]
 }

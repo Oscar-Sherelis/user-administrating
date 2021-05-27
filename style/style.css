@@ -1,0 +1,71 @@
+body {
+    min-height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+tbody tr td {
+    border: 2px solid #fff;
+}
+
+tbody tr .firstname:hover,
+tbody tr .lastname:hover,
+tbody tr .gender:hover,
+tbody tr .birthday:hover {
+    cursor: pointer;
+    border-bottom: 2px solid rgb(83, 147, 241);
+}
+
+th,
+td {
+    padding: 15px;
+}
+
+th,
+td,
+select,
+input {
+    font-size: 28px;
+}
+th {
+    font-weight: bold;
+}
+
+.onEdit {
+    border: 2px solid rgb(49, 197, 81)
+}
+
+.buttons {
+    visibility: hidden;
+}
+
+.buttons button {
+    padding: 10px;
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+    margin-right: 5px;
+    font-size: 24px;
+}
+
+.buttons button:hover {
+    cursor: pointer;
+}
+
+.buttons button:first-child {
+    background-color: rgb(65, 170, 44);
+}
+
+.buttons button:nth-child(2) {
+    background-color: rgb(199, 196, 196);
+}
+
+.buttons button:nth-child(3) {
+    background-color: rgb(194, 26, 26);
+}
+
+.buttons button:last-child {
+    margin-right: 0;
+}
