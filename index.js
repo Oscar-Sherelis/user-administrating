@@ -66,6 +66,7 @@ async function loadUsers(endpoint) {
 async function load() {
   await loadUsers("http://localhost:3000/users");
   addfieldEvents(tbodyTdClasses);
+  await cancel();
 }
 
 function addfieldEvents(classes) {
@@ -148,6 +149,16 @@ function addfieldEvents(classes) {
           : (field.parentNode.querySelector(".buttons").style.visibility =
               "hidden");
       });
+    });
+  });
+}
+
+// CANCEL
+async function cancel() {
+  document.querySelectorAll(".cancel").forEach((singleCancel) => {
+    singleCancel.addEventListener("click", async () => {
+      document.querySelector("tbody").innerHTML = "";
+      load();
     });
   });
 }
