@@ -67,6 +67,7 @@ async function load() {
   await loadUsers("http://localhost:3000/users");
   addfieldEvents(tbodyTdClasses);
   await cancel();
+  save();
 }
 
 function addfieldEvents(classes) {
@@ -159,6 +160,41 @@ async function cancel() {
     singleCancel.addEventListener("click", async () => {
       document.querySelector("tbody").innerHTML = "";
       load();
+    });
+  });
+}
+
+function save() {
+
+  async function saveReq(id, patch) {
+    let res = await fetch("http://localhost:3000/users/" + id, {
+      method: "PATCH",
+      mode: "cors",
+      body: JSON.stringify(patch),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return await res.json();
+  }
+
+  document.querySelectorAll(".save").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      let selectedRow = btn.parentNode.parentNode;
+      let patch = {
+        firstname: selectedRow.querySelector(".firstname").innerHTML,
+        lastname: selectedRow.querySelector(".lastname").innerHTML,
+      };
+      !!selectedRow.querySelector(".gender select")
+        ? ((currentdIndex = selectedRow.querySelector(".gender select")),
+          (patch.gender = selectedRow.querySelector(".gender select").value))
+        : selectedRow.querySelector(".gender").innerHTML;
+
+      !!selectedRow.querySelector(".birthday input")
+        ? (patch.birthday = selectedRow.querySelector(".birthday input").value)
+        : selectedRow.querySelector(".birthday").innerHTML;
+      saveReq(btn.value, patch);
+      alert("Save completed Successfully");
     });
   });
 }
