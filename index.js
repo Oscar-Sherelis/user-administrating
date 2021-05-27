@@ -65,6 +65,91 @@ async function loadUsers(endpoint) {
 
 async function load() {
   await loadUsers("http://localhost:3000/users");
+  addfieldEvents(tbodyTdClasses);
+}
+
+function addfieldEvents(classes) {
+  // clicked el index
+  function findHtmlElIndex(e, classes) {
+    return Array.from(classes).indexOf(e.target);
+  }
+  let clickedHideRows = false;
+  
+  function hideOtherRows(e, classes) {
+    let index = findHtmlElIndex(e, classes);
+    document.querySelectorAll("tbody tr").forEach((row, i) => {
+      if (i !== index && !clickedHideRows) {
+        row.style.visibility = "hidden";
+        clickedHideRows = true;
+      }
+    });
+  }
+  let clickedToEditGender = false;
+  let clickedToEditBirthday = false;
+
+  function editField(e, classes, tdClassName) {
+    let currentBirthday;
+    let index = findHtmlElIndex(e, classes);
+
+    if (!!document.querySelectorAll("tbody tr")[index]) {
+      document
+        .querySelectorAll("tbody tr")
+        [index].querySelector(tdClassName)
+        .addEventListener("click", () => {
+          document
+            .querySelectorAll("tbody tr")
+            [index].querySelector(tdClassName)
+            .classList.toggle("onEdit");
+        });
+    }
+    if (tdClassName === ".firstname" || tdClassName === ".lastname") {
+      document
+        .querySelectorAll("tbody tr")
+        [index].querySelector(tdClassName)
+        .setAttribute("contenteditable", "true");
+    } else if (tdClassName === ".gender") {
+      if (!clickedToEditGender) {
+        document
+          .querySelectorAll("tbody tr")
+          [index].querySelector(".gender").innerHTML = `
+      <select>
+        <option value="male" default>male</option>
+        <option value="female">female</option>
+      </select>
+      `;
+        clickedToEditGender = true;
+      }
+    } else if (tdClassName === ".birthday") {
+      if (!clickedToEditBirthday) {
+        currentBirthday = document
+          .querySelectorAll("tbody tr")
+          [index].querySelector(".birthday").innerHTML;
+        document
+          .querySelectorAll("tbody tr")
+          [index].querySelector(".birthday").innerHTML = `
+        <input type="date" value="${currentBirthday}">
+        `;
+        clickedToEditBirthday = true;
+      }
+    }
+  }
+  let isClicked = false;
+
+  // classes from const arr .firstname, .lastname etc...
+  classes.forEach((singleClass) => {
+    document.querySelectorAll(singleClass).forEach((field) => {
+      field.addEventListener("click", (e) => {
+        !isClicked
+          ? // if isClicked = false, then display hidden buttons, else not display
+            ((field.parentNode.querySelector(".buttons").style.visibility =
+              "visible"),
+            hideOtherRows(e, document.querySelectorAll(singleClass)),
+            editField(e, document.querySelectorAll(singleClass), singleClass))
+          : (field.parentNode.querySelector(".buttons").style.visibility =
+              "hidden");
+      });
+    });
+  });
 }
 
 load();
