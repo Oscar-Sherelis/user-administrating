@@ -82,7 +82,7 @@ function addfieldEvents(classes) {
     let index = findHtmlElIndex(e, classes);
     document.querySelectorAll("tbody tr").forEach((row, i) => {
       if (i !== index && !clickedHideRows) {
-        row.style.visibility = "hidden";
+        row.style.display = "none";
         clickedHideRows = true;
       }
     });
@@ -143,13 +143,13 @@ function addfieldEvents(classes) {
     document.querySelectorAll(singleClass).forEach((field) => {
       field.addEventListener("click", (e) => {
         !isClicked
-          ? // if isClicked = false, then display hidden buttons, else not display
-            ((field.parentNode.querySelector(".buttons").style.visibility =
-              "visible"),
+          ? // if isClicked = false, then display none buttons, else not display
+            ((field.parentNode.querySelector(".buttons").style.display =
+              "flex"),
             hideOtherRows(e, document.querySelectorAll(singleClass)),
             editField(e, document.querySelectorAll(singleClass), singleClass))
-          : (field.parentNode.querySelector(".buttons").style.visibility =
-              "hidden");
+          : (field.parentNode.querySelector(".buttons").style.display =
+              "none");
       });
     });
   });

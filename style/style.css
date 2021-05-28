@@ -4,6 +4,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: scroll;
 }
 
 tbody tr td {
@@ -38,7 +39,7 @@ th {
 }
 
 .buttons {
-    visibility: hidden;
+   display: none;
 }
 
 .buttons button {
@@ -65,7 +66,37 @@ th {
 .buttons button:nth-child(3) {
     background-color: rgb(194, 26, 26);
 }
-
 .buttons button:last-child {
     margin-right: 0;
+}
+
+@media (max-width: 900px) {
+body {
+    overflow-x: scroll;
+}
+th,
+td {
+    padding: 5px;
+}
+
+tr td:last-child {
+    flex-direction: column;
+}
+th,
+td,
+select,
+input {
+    font-size: 24px;
+}
+
+.buttons {
+   display: none;
+}
+.buttons button {
+    padding: 5px;
+    color: #fff;
+    border-radius: 3px;
+    margin-right: 0;
+    font-size: 24px;
+}
 }
