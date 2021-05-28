@@ -1,4 +1,4 @@
-const tbodyTdClasses = [".firstname", ".lastname", ".gender", ".birthday"];
+const tbodyTdClasses = [".firstname", ".lastname", ".gender", ".birthdate"];
 
 async function loadUsers(endpoint) {
   const users = await fetch(endpoint);
@@ -46,12 +46,12 @@ async function loadUsers(endpoint) {
     tdFirstname.setAttribute("class", "firstname");
     tdLastname.setAttribute("class", "lastname");
     tdGender.setAttribute("class", "gender");
-    tdBirth.setAttribute("class", "birthday");
+    tdBirth.setAttribute("class", "birthdate");
 
     tdFirstname.append(user.firstname ?? "");
     tdLastname.append(user.lastname ?? "");
     tdGender.append(user.gender ?? "");
-    tdBirth.append(user.birthday ?? "");
+    tdBirth.append(user.birthdate ?? "");
 
     cancelBtn.value = user.id;
     saveBtn.value = user.id;
@@ -88,10 +88,10 @@ function addfieldEvents(classes) {
     });
   }
   let clickedToEditGender = false;
-  let clickedToEditBirthday = false;
+  let clickedToEditBirthdate = false;
 
   function editField(e, classes, tdClassName) {
-    let currentBirthday;
+    let currentBirthdate;
     let index = findHtmlElIndex(e, classes);
 
     if (!!document.querySelectorAll("tbody tr")[index]) {
@@ -122,17 +122,17 @@ function addfieldEvents(classes) {
       `;
         clickedToEditGender = true;
       }
-    } else if (tdClassName === ".birthday") {
-      if (!clickedToEditBirthday) {
-        currentBirthday = document
+    } else if (tdClassName === ".birthdate") {
+      if (!clickedToEditBirthdate) {
+        currentBirthdate = document
           .querySelectorAll("tbody tr")
-          [index].querySelector(".birthday").innerHTML;
+          [index].querySelector(".birthdate").innerHTML;
         document
           .querySelectorAll("tbody tr")
-          [index].querySelector(".birthday").innerHTML = `
-        <input type="date" value="${currentBirthday}">
+          [index].querySelector(".birthdate").innerHTML = `
+        <input type="date" value="${currentBirthdate}">
         `;
-        clickedToEditBirthday = true;
+        clickedToEditBirthdate = true;
       }
     }
   }
@@ -191,9 +191,9 @@ function save() {
           (patch.gender = selectedRow.querySelector(".gender select").value))
         : selectedRow.querySelector(".gender").innerHTML;
 
-      !!selectedRow.querySelector(".birthday input")
-        ? (patch.birthday = selectedRow.querySelector(".birthday input").value)
-        : selectedRow.querySelector(".birthday").innerHTML;
+      !!selectedRow.querySelector(".birthdate input")
+        ? (patch.birthdate = selectedRow.querySelector(".birthdate input").value)
+        : selectedRow.querySelector(".birthdate").innerHTML;
       saveReq(btn.value, patch);
       alert("Save completed Successfully");
     });
