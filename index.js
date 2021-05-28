@@ -168,7 +168,7 @@ async function cancel() {
 function save() {
 
   async function saveReq(id, patch) {
-    let res = await fetch("http://localhost:3000/users/" + id, {
+    let res = await fetch(dataToFetch + id, {
       method: "PATCH",
       mode: "cors",
       body: JSON.stringify(patch),
@@ -203,7 +203,7 @@ function save() {
 function deleteEvent() {
   // deletes selected fields
   async function deletePatch(id, patch) {
-    let res = await fetch("http://localhost:3000/users/" + id, {
+    let res = await fetch(dataToFetch + id, {
       method: "PATCH",
       mode: "cors",
       body: JSON.stringify(patch),
@@ -215,7 +215,7 @@ function deleteEvent() {
   }
   // If all fields are selected, then delete from DB
   async function deleteReq(id) {
-    let res = await fetch("http://localhost:3000/users/" + id, {
+    let res = await fetch(dataToFetch + id, {
       method: "DELETE",
       mode: "cors",
       headers: {
