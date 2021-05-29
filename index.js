@@ -76,14 +76,11 @@ function addfieldEvents(classes) {
   function findHtmlElIndex(e, classes) {
     return Array.from(classes).indexOf(e.target);
   }
-  let clickedHideRows = false;
-  
   function hideOtherRows(e, classes) {
     let index = findHtmlElIndex(e, classes);
     document.querySelectorAll("tbody tr").forEach((row, i) => {
       if (i !== index) {
         row.style.display = "none";
-        // clickedHideRows = true;
       }
     });
   }
