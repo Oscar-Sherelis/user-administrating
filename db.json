@@ -2,13 +2,27 @@
   "users": [
     {
       "id": 1,
-      "firstname": "Oscaras",
+      "firstname": "Simon",
       "lastname": "Shereli",
       "gender": "male",
       "birthdate": "1998-12-13"
     },
     {
       "id": 2,
+      "firstname": "Harry",
+      "lastname": "Stockhol",
+      "gender": "male",
+      "birthdate": "1999-07-28"
+    },
+    {
+      "id": 4,
+      "firstname": "Oscaras",
+      "lastname": "Shereli",
+      "gender": "male",
+      "birthdate": "1998-12-13"
+    },
+    {
+      "id": 3,
       "firstname": "Harry",
       "lastname": "Stockholm",
       "gender": "male",

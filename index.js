@@ -81,9 +81,9 @@ function addfieldEvents(classes) {
   function hideOtherRows(e, classes) {
     let index = findHtmlElIndex(e, classes);
     document.querySelectorAll("tbody tr").forEach((row, i) => {
-      if (i !== index && !clickedHideRows) {
+      if (i !== index) {
         row.style.display = "none";
-        clickedHideRows = true;
+        // clickedHideRows = true;
       }
     });
   }
