@@ -1,23 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/reset.css">
-    <link rel="stylesheet" href="style/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style/reset.css" />
+    <link rel="stylesheet" href="style/style.css" />
     <title>User administration</title>
-</head>
-<body>
-    <table>
+  </head>
+  <body>
+    <section>
+      <select class="per_page">
+        <option value="5" default>5</option>
+        <option value="10" default>10</option>
+        <option value="20" default>20</option>
+        <option value="50" default>50</option>
+      </select>
+      <table>
         <thead>
-            <tr>
-            </tr>
+          <tr></tr>
         </thead>
-        <tbody>
-        </tbody>
-    </table>
+        <tbody></tbody>
+      </table>
+      <div class="pagination-block">
+        <span class="pageButton outline-none" id="button_prev">Prev</span>
+        <span id="page_number" class="outline-none"></span>
+        <span class="pageButton outline-none" id="button_next">Next</span>
+      </div>
+    </section>
     <script src="./config.js"></script>
     <script src="./index.js"></script>
-</body>
+  </body>
 </html>
